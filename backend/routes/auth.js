@@ -1,9 +1,15 @@
 const router = require('express').Router();
-const User = require('../model/User');
+const User = require('../model/User.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { registerValidation, loginValidation } = require('../validation')
 
+
+// REGISTER
+/* 
+    Register a user. Endpoint => http://localhost:8080/api/user/register 
+    Payload: {name:"",email:"",password:""}
+*/
 router.post('/register', async (req, res) => {
 
     // validate data before creating user
@@ -31,7 +37,7 @@ router.post('/register', async (req, res) => {
         const savedUser = await user.save();
         console.log(`new user saved successfully - id: ${user._id}, name: ${user.name}, email: ${user.email}`);
 
-        res.send({ user_id: user.id, email: user.email });
+        res.status(200).send({ savedUser });
     } catch (err) {
         res.status(400).send(err)
     }
@@ -57,10 +63,13 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ _id: user._id, _name: user.name }, process.env.TOKEN_SECRET);
     console.log(`token assigned to user successfully - id: ${user._id}, name: ${user.name}`);
 
+    console.log(`User login successful - id: ${user._id}, email: ${user.email}`);
+
     // 'auth-token' is name token
     res.header('auth-token', token).send(token);
 
-    console.log(`User login successful - id: ${user._id}, email: ${user.email}`);
 })
+
+
 
 module.exports = router;

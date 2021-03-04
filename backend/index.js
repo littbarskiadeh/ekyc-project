@@ -2,23 +2,34 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // import routes
 const authRoute = require('./routes/auth');
-const posts = require('./routes/posts');
+const addClientData = require('./routes/addClientData');
 
 dotenv.config();
-const connectionString = process.env.DB_CONNECT;
-const PORT = process.env.SERVER_PORT;
 
 // Connect to DB
+const connectionString = process.env.DB_CONNECT;
+const PORT = process.env.SERVER_PORT;
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => { console.log("Mongoose connected successfully "); },
         error => { console.log("Mongoose could not connect to database: " + error) });
 
+app.use(cors());
+
+// for CORS 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
+    next();
+})
+
 // Middleware
 app.use(express.json());
-app.use('/api/posts', posts);
+app.use('/api/addClientData', addClientData);
 
 // Route middleware
 app.use('/api/user', authRoute);
