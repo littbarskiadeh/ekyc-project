@@ -20,13 +20,12 @@ class SignUp extends React.Component {
         event.preventDefault();
         event.stopPropagation();
         console.log("Login clicked");
-        this.props.history.push("/verifyId");
-
     }
     handleRegister = (event) => {
         event.preventDefault();
         event.stopPropagation();
         console.log("Register clicked");
+        this.props.history.push("/verifyId");
     }
     handleUserNameChange = (event) => {
         this.setState({ userName: event.target.value });
@@ -57,12 +56,12 @@ class SignUp extends React.Component {
             <Form>
                 <Form.Group as={Col} md="4" controlId="formBasicUserName">
                     <Form.Label>User Name</Form.Label>
-                    <Form.Control type="userName" placeholder="Enter User Name" />
+                    <Form.Control type="userName" placeholder="Enter User Name"  onChange={this.handleUserNameChange}/>
                 </Form.Group>
 
                 <Form.Group as={Col} md="4" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control type="email" placeholder="Enter email" onChange={this.handleEmailChange} />
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
               </Form.Text>
