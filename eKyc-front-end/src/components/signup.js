@@ -10,25 +10,38 @@ class SignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "",
+            name: "",
             email: "",
             password: ""
         }
     }
 
-    handleLogin = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+    handleLoginLink = (event) => {
         console.log("Login clicked");
+        this.props.history.push("/login");
     }
-    handleRegister = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+    handleRegister = async () => {
         console.log("Register clicked");
+
+        const response = await fetch(`http://localhost:8080/api/user/register`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password
+            }),
+        });
+        const token = await response.json();
+        localStorage.setItem('email', this.state.email);
+        localStorage.setItem('token', token);
         this.props.history.push("/verifyId");
     }
-    handleUserNameChange = (event) => {
-        this.setState({ userName: event.target.value });
+    handleNameChange = (event) => {
+        this.setState({ Name: event.target.value });
     };
     handleEmailChange = (event) => {
         this.setState({ email: event.target.value });
@@ -37,12 +50,6 @@ class SignUp extends React.Component {
     handlePasswordChange = (event) => {
         this.setState({ password: event.target.value });
     };
-    // handleConfirmPasswordChange =(event) =>{
-    //   let confirmPassword = event.target.value;
-    //   if(this.props.password !== confirmPassword){
-
-    //   }
-    //}
 
     render() {
         return (<div>
@@ -55,8 +62,8 @@ class SignUp extends React.Component {
             </Jumbotron>
             <Form>
                 <Form.Group as={Col} md="4" controlId="formBasicUserName">
-                    <Form.Label>User Name</Form.Label>
-                    <Form.Control type="userName" placeholder="Enter User Name"  onChange={this.handleUserNameChange}/>
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type="name" placeholder="Enter Name" onChange={this.handleUserNameChange} />
                 </Form.Group>
 
                 <Form.Group as={Col} md="4" controlId="formBasicEmail">
@@ -77,16 +84,14 @@ class SignUp extends React.Component {
                     <Form.Control type="password" placeholder="ConfirmPassword" onChange={this.handleConfirmPasswordChange}/>
                 </Form.Group> */}
 
-                <Form.Group as={Col} md="4" controlId="formBasicRegister" onClick={this.handleRegister}>
-                    <Button variant="info" >
+                <Form.Group as={Col} md="4" controlId="formBasicRegister">
+                    <Button variant="info" onClick={this.handleRegister}>
                         Register
                     </Button>
-                    {' '}
-                    <Button variant="info" type="submit" onClick={this.handleLogin}>
-                        Login
-                    </Button>
                 </Form.Group>
-
+                <Button variant="link" onClick={this.handleLoginLink}>
+                    Already have an account?
+                </Button>
             </Form>
         </div>
         );
