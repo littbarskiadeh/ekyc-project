@@ -11,7 +11,7 @@ const addClientData = require('./routes/addClientData');
 dotenv.config();
 
 // Connect to DB
-const connectionString = process.env.DB_CONNECT;
+const connectionString = process.env.DB_CONNECT || "mongodb://localhost:27017/ekyc?readPreference=primary&appname=Mongodb%20Compass&ssl=false";
 const PORT = process.env.SERVER_PORT;
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => { console.log("Mongoose connected successfully "); },
@@ -19,7 +19,7 @@ mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: 
 
 app.use(cors());
 
-// for CORS 
+// for CORS
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 })
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use('/api/addClientData', addClientData);
 
