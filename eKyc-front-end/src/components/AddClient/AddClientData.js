@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter, useLocation } from 'react-router-dom';
-
-
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -29,8 +27,9 @@ const ClientData = (props) => {
 
     useEffect(() => {
         // get user detail passed from signup page
-        setLoggedInUser(location.state.detail)
-        console.log(`logged in user has been set ${location.state.detail.email}`);
+        let loggedInUser = localStorage.getItem('email');
+        setLoggedInUser(loggedInUser);
+        console.log(`logged in user has been set ${loggedInUser}`);
     }, [location])
 
     const [fullName, setfullName] = useState("");
