@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from "react-router-dom";
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import { set } from 'mongoose';
-
-
+// import { set } from 'mongoose';
 
 const SignUp = (props) => {
     const [userName, setUserName] = useState("");
@@ -15,8 +13,9 @@ const SignUp = (props) => {
     const [password, setPassword] = useState("");
     const [loginStatus, setLoginStatus] = useState(false);
 
-    // const [userToken, setUserToken] = useState("");
-
+    // useEffect(() => {
+    //     console.log(`User status updated >>>>>>>   login status: ${loginStatus}`)
+    // }, [loginStatus])
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -33,12 +32,21 @@ const SignUp = (props) => {
             });
 
             if (response.ok) {
-                setLoginStatus(true)
-                // route user to next page
-                props.history.push("/verifyId");
+                setLoginStatus(current => !current);
+
+                props.history.push({
+                    pathname: '/verifyId',
+                    state: {
+                        detail: {
+                            email
+                        }
+                    }
+                })
             }
             else {
                 // handle condition where user login was not successful
+                const errorMessage = await response.json();
+                alert(errorMessage)
             }
         }
         catch (err) {
@@ -72,11 +80,16 @@ const SignUp = (props) => {
 
     return (<div>
         <Jumbotron>
-            <h1>Welcome to Group L crypto finance!</h1>
+            <h1>EKYC APP</h1>
             <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
-                </p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+                obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+                nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+                tenetur error, harum nesciunt ipsum debitis quas aliquid.
+            </p>
         </Jumbotron>
         <Form>
             <Form.Group as={Col} md="4" controlId="formBasicUserName">
@@ -96,11 +109,6 @@ const SignUp = (props) => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
-
-            {/* <Form.Group as={Col} md="4" controlId="formBasicConfirmPassword">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type="password" placeholder="ConfirmPassword" onChange={this.handleConfirmPasswordChange}/>
-                </Form.Group> */}
 
             <Form.Group as={Col} md="4" controlId="formBasicRegister" onClick={handleRegister}>
                 <Button variant="info" >

@@ -40,9 +40,8 @@ router.post('/', async (req, res) => {
         // save new client to db
         const savedClient = await client.save();
         console.log(`Client data saved successfully \n${savedClient}`);
-        console.log('\n\nsending response...');
         // res.send(clientData)
-        res.status(200).send(client);
+        res.status(200).json(client);
 
     } catch (err) {
         res.status(400).send(err)

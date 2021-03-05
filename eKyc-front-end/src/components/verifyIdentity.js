@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 
 const VerifyIdentity = (props) => {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {}
-    // }
+
+    // access loggedin user prop with useLocation hook
+    const location = useLocation();
+    const [loggedInUser, setLoggedInUser] = useState("");
+
+    useEffect(() => {
+        // get user detail passed from signup page
+        setLoggedInUser(location.state.detail.email)
+        console.log(`logged in user has been set ${location.state.detail.email}`);
+    }, [location])
+
     const handleNextClick = (event) => {
         event.preventDefault();
         event.stopPropagation();
         console.log("Next clicked");
-        props.history.push("/clientData");
+        // props.history.push("/clientData");
+
+        props.history.push({
+            pathname: '/clientData',
+            state: {
+                detail: loggedInUser
+            }
+        })
     }
 
     return (
@@ -21,6 +35,8 @@ const VerifyIdentity = (props) => {
             <p>
                 This process may take few minutes. Once completed you will be able to add funds right away.
                 </p>
+
+            <p>Logged In User: {loggedInUser} </p>
             <p>
                 <Button variant="info" onClick={handleNextClick}>Next</Button>
             </p>

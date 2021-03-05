@@ -12,7 +12,7 @@ const NavBar = () => {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/verifyId">Verify</Link>
+                    {/* <Link to="/verifyId">Verify</Link> */}
                 </li>
                 <li>
                     <Link to="/clientData">Add Client Data</Link>

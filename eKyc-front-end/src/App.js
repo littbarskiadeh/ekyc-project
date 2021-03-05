@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
-import SignUp from './components/signup';
+import SignUp from './components/Signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import VerifyIdentity from './components/verifyIdentity';
-import ClientData from './components/clientData';
-import NavBar from './components/NavBar';
+import VerifyIdentity from './components/VerifyIdentity';
+import ClientData from './components/AddClient/AddClientData';
+import NavBar from './components/NavBar/NavBar';
 
 
 /**
@@ -13,7 +13,6 @@ import NavBar from './components/NavBar';
  - Connected backend apis and DB
  - Converted to functional components
  - Added NavBar for ease of dev and testing
- - 
  
  TO DO:
  - Add functionality to upload file
