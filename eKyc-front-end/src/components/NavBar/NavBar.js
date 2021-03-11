@@ -17,6 +17,9 @@ const NavBar = () => {
                 <li>
                     <Link to="/clientData">Add Client Data</Link>
                 </li>
+                <li>
+                    <Link to="/viewData">View Data</Link>
+                </li>
             </ul>
         </nav>
     )

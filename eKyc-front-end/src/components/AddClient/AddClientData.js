@@ -21,26 +21,16 @@ const ClientData = (props) => {
     }
     */
 
-    // access loggedin user prop with useLocation hook
-    const location = useLocation();
-    const [loggedInUser, setLoggedInUser] = useState("");
-
-    useEffect(() => {
-        // get user detail passed from signup page
-        let loggedInUser = localStorage.getItem('email');
-        setLoggedInUser(loggedInUser);
-        console.log(`logged in user has been set ${loggedInUser}`);
-    }, [location])
+    const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem('email'));
+    const [token, setToken] = useState(localStorage.getItem('token'));
 
     const [fullName, setfullName] = useState("");
     const [birthdate, setBirthdate] = useState("");
-
     const [address, setAddress] = useState("");
     const [address2, setAddress2] = useState("");
     const [addressCity, setAddressCity] = useState("");
     const [addressState, setAddressState] = useState("");
     const [addressZip, setAddressZip] = useState("");
-
     const [selectedFile, setSelectedFile] = useState(null);
 
 
@@ -65,12 +55,12 @@ const ClientData = (props) => {
                 }),
                 headers: {
                     'Content-Type': 'application/json',
+                    'auth-token': token
                 }
             });
 
             const savedClient = await response.json();
             if (response.ok) {
-
                 console.log("Client data submitted successfully")
                 console.log(savedClient)
                 // alert(await response.json())

@@ -48,6 +48,30 @@ class Login extends React.Component {
         }
     }
 
+    handleIndtitutionLogin = async () => {
+        console.log("login as institution clicked");
+
+        const response = await fetch(`http://localhost:8080/api/user/login`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password
+            }),
+        });
+        const token = await response.text();
+        if (response.ok) {
+            localStorage.setItem('email', this.state.email);
+            localStorage.setItem('token', token);
+            this.props.history.push("/viewData");
+        } else {
+            alert(`Error : ${token}`);
+        }
+    }
+
     render() {
         return (
             <div>
@@ -65,6 +89,9 @@ class Login extends React.Component {
                     <Form.Group as={Col} md="4" controlId="formBasicLogin">
                         <Button variant="info" onClick={this.handleLogin}>
                             Login
+                        </Button>{" "}
+                        <Button variant="info" onClick={this.handleIndtitutionLogin}>
+                            Login as Institution
                         </Button>
                     </Form.Group>
                     <Button variant="link" onClick={this.handleRegisterLink}>
