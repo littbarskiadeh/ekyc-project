@@ -67,6 +67,14 @@ router.post('/login', async (req, res) => {
     console.log(`User login successful - id: ${user._id}, email: ${user.email}`);
 })
 
+router.post('/viewData', async (req, res) => {
+   
+    // Create and assign JWT token
+    createAndSendToken(user, res);
+
+    console.log(`User login successful - id: ${user._id}, email: ${user.email}`);
+})
+
 module.exports = router;
 
 function createAndSendToken(user, res) {

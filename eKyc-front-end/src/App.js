@@ -6,6 +6,7 @@ import VerifyIdentity from './components/verifyIdentity';
 import ClientData from './components/AddClient/AddClientData';
 import NavBar from './components/NavBar/NavBar';
 import Login from "./components/login";
+import ViewData from "./components/viewData";
 
 /**
  UPDATES:
@@ -34,6 +35,7 @@ const App = () => {
                     <Route path="/verifyId" component={VerifyIdentity}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/clientData" component={ClientData}/>
+                    <Route path="/viewData" component={ViewData}/>
                 </Switch>
             </Container>
         </BrowserRouter>

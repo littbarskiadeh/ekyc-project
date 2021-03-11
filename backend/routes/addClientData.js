@@ -22,7 +22,7 @@ const Client = require('../model/Client.model');
 // })
 
 'http://localhost:8080/api/addClientData'
-router.post('/', async (req, res) => {
+router.post('/', verify, async (req, res) => {
 
     // create user object from request body
 
@@ -53,6 +53,8 @@ router.post('/', async (req, res) => {
     // if (error) return res.status(400).send(error.details[0].message);
 
     */
-})
+});
+
+
 
 module.exports = router;
