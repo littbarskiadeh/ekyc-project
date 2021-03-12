@@ -9,7 +9,6 @@ class SignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
             email: "",
             password: ""
         }
@@ -29,7 +28,6 @@ class SignUp extends React.Component {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
             }),
@@ -53,7 +51,6 @@ class SignUp extends React.Component {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
             }),
@@ -69,9 +66,6 @@ class SignUp extends React.Component {
         }
     }
 
-    handleNameChange = (event) => {
-        this.setState({ name: event.target.value });
-    }
 
     handleEmailChange = (event) => {
         this.setState({ email: event.target.value });
@@ -91,10 +85,6 @@ class SignUp extends React.Component {
                     </p>
             </Jumbotron>
             <Form>
-                <Form.Group as={Col} md="4" controlId="formBasicUserName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="name" placeholder="Enter Name" onChange={this.handleNameChange} />
-                </Form.Group>
 
                 <Form.Group as={Col} md="4" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
