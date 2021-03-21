@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { registerValidation, loginValidation } = require('../validation')
 
-
 // REGISTER
 /*
     Register a user. Endpoint => http://localhost:8080/api/user/register
@@ -68,7 +67,7 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/viewData', async (req, res) => {
-   
+
     // Create and assign JWT token
     createAndSendToken(user, res);
 

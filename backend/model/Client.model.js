@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const clientSchema = new mongoose.Schema({
-
     fullName: {
         type: String,
         required: true,
@@ -17,22 +16,7 @@ const clientSchema = new mongoose.Schema({
         required: true,
         max: 255,
     },
-    address2: {
-        type: String,
-        required: false,
-        max: 1024,
-    },
-    city: {
-        type: String,
-        required: true,
-        max: 1024,
-    },
-    state: {
-        type: String,
-        required: true,
-        max: 1024,
-    },
-    zip: {
+    sin: {
         type: String,
         required: true,
         max: 1024,

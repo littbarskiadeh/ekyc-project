@@ -1,8 +1,5 @@
 /**
-
 This is an example. We can use this for any protected endpoints on the server end
-
-
  **/
 const router = require('express').Router();
 
@@ -16,7 +13,7 @@ const Client = require('../model/Client.model');
 //     res.json({
 //         posts: {
 //             title: 'first post',
-//             content: 'Something you should not be messing with, if you are not logged in'
+//             content: 'Something you should not be seeing with, if you are not logged in'
 //         }
 //     })
 // })
@@ -26,14 +23,21 @@ router.post('/', verify, async (req, res) => {
 
     // create user object from request body
 
+    // const client = new Client({
+    //     fullName: req.body.fullName,
+    //     birthdate: req.body.birthdate,
+    //     address: req.body.address,
+    //     address2: req.body.address2,
+    //     city: req.body.city,
+    //     state: req.body.state,
+    //     zip: req.body.zip
+    // })
+
     const client = new Client({
         fullName: req.body.fullName,
         birthdate: req.body.birthdate,
         address: req.body.address,
-        address2: req.body.address2,
-        city: req.body.city,
-        state: req.body.state,
-        zip: req.body.zip
+        sin: req.body.sin,
     })
 
     try {
@@ -46,15 +50,10 @@ router.post('/', verify, async (req, res) => {
     } catch (err) {
         res.status(400).send(err)
     }
-
-
     /*
     // output validation errors
     // if (error) return res.status(400).send(error.details[0].message);
 
     */
 });
-
-
-
 module.exports = router;

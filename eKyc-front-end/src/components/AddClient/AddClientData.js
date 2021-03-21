@@ -12,27 +12,18 @@ const ClientData = (props) => {
     clientData = {
         fullname:"",
         birthdate:"",
-        address: {
-            address2:"",
-            city:"",
-            state:"",
-            zip:"",
-        }
+        address: "",
+        sin:""
     }
     */
-
     const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem('email'));
     const [token, setToken] = useState(localStorage.getItem('token'));
 
+    // User Data
     const [fullName, setfullName] = useState("");
     const [birthdate, setBirthdate] = useState("");
     const [address, setAddress] = useState("");
-    const [address2, setAddress2] = useState("");
-    const [addressCity, setAddressCity] = useState("");
-    const [addressState, setAddressState] = useState("");
-    const [addressZip, setAddressZip] = useState("");
-    const [selectedFile, setSelectedFile] = useState(null);
-
+    const [sin, setSin] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -47,11 +38,7 @@ const ClientData = (props) => {
                     fullName: fullName,
                     birthdate: birthdate,
                     address: address,
-                    address2: address2,
-                    city: addressCity,
-                    state: addressState,
-                    zip: addressZip,
-
+                    sin: sin,
                 }),
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,6 +51,7 @@ const ClientData = (props) => {
                 console.log("Client data submitted successfully")
                 console.log(savedClient)
                 // alert(await response.json())
+                alert("Saved successfully!!")
             }
             else {
                 // handle condition where user login was not successful
@@ -73,22 +61,12 @@ const ClientData = (props) => {
         catch (error) {
             console.log(error);
         }
-
     }
-
-    const onChangeHandler = (event) => {
-        setSelectedFile({
-            selectedFile: event.target.files[0],
-            loaded: 0,
-        })
-    }
-
     return (
         <>
             <p className='loginTag'>
                 Logged in: {loggedInUser}
             </p>
-
             <Form>
                 <Form.Row>
                     <Form.Group as={Col} controlId="Full Name">
@@ -107,38 +85,9 @@ const ClientData = (props) => {
                     <Form.Control placeholder="1234 Main St" defaultValue={address} onChange={(e) => setAddress(e.target.value)} />
                 </Form.Group>
 
-                <Form.Group controlId="formGridAddress2">
-                    <Form.Label>Address 2</Form.Label>
-                    <Form.Control placeholder="Apartment, studio, or floor" defaultValue={address2} onChange={(e) => setAddress2(e.target.value)} />
-                </Form.Group>
-
-                <Form.Row>
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>City</Form.Label>
-                        <Form.Control placeholder="City" defaultValue={addressCity} onChange={(e) => setAddressCity(e.target.value)} />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridState">
-                        <Form.Label>State</Form.Label>
-                        <Form.Control placeholder="State" defaultValue={addressState} onChange={(e) => setAddressState(e.target.value)} />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridZip">
-                        <Form.Label>Zip</Form.Label>
-                        <Form.Control placeholder="Zip" defaultValue={addressZip} onChange={(e) => setAddressZip(e.target.value)} />
-                    </Form.Group>
-                </Form.Row>
-
-                <Form.Group>
-                    <Form.File
-                        className="position-relative"
-                        required
-                        name="file"
-                        label="File"
-                        onChange={onChangeHandler}
-                        id="validationFormik107"
-                        feedbackTooltip
-                    />
+                <Form.Group controlId="formGridSin">
+                    <Form.Label>Sin</Form.Label>
+                    <Form.Control placeholder="Enter SIN here" defaultValue={sin} onChange={(e) => setSin(e.target.value)} />
                 </Form.Group>
 
                 <Button variant="primary" type="submit" onClick={handleSubmit}>
