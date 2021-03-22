@@ -7,32 +7,10 @@ const router = require('express').Router();
 const verify = require('./verifyToken');
 const Client = require('../model/Client.model');
 
-
-// add verify to protect this route: /api/posts/
-// router.get('/', verify, (req, res) => {
-//     res.json({
-//         posts: {
-//             title: 'first post',
-//             content: 'Something you should not be seeing with, if you are not logged in'
-//         }
-//     })
-// })
-
-'http://localhost:8080/api/addClientData'
+//'http://localhost:8080/api/addClientData'
 router.post('/', verify, async (req, res) => {
 
     // create user object from request body
-
-    // const client = new Client({
-    //     fullName: req.body.fullName,
-    //     birthdate: req.body.birthdate,
-    //     address: req.body.address,
-    //     address2: req.body.address2,
-    //     city: req.body.city,
-    //     state: req.body.state,
-    //     zip: req.body.zip
-    // })
-
     const client = new Client({
         fullName: req.body.fullName,
         birthdate: req.body.birthdate,
@@ -56,4 +34,26 @@ router.post('/', verify, async (req, res) => {
 
     */
 });
+
+router.get('/search/:name', verify, (req, res) => {
+    let regex = new RegExp(req.params.name, "i"),
+        query = { fullName: regex };
+    Client.find(query, (err, data) => {
+        if (err) {
+            res.json(err);
+        }
+        res.json(data);
+    });
+
+});
+
+// Verify client data with blockchain
+// endpoint to call blockchain
+//'http://localhost:8080/api/clientData/verify/{sin}' 
+router.post('/verify', async (req, res) => {
+
+    let lookupSin = req.body.sin;
+    res.status(200).json({ message: "success", lookup: lookupSin })
+});
+
 module.exports = router;

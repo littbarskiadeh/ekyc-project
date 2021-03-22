@@ -6,8 +6,8 @@ const cors = require('cors');
 
 // import routes
 const authRoute = require('./routes/auth');
-const addClientData = require('./routes/addClientData');
-const viewData = require('./routes/viewData');
+const clientData = require('./routes/clientData');
+// const viewData = require('./routes/viewData');
 
 dotenv.config();
 
@@ -31,8 +31,8 @@ app.use((req, res, next) => {
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use('/api/addClientData', addClientData);
-app.use('/api/clientData', viewData);
+app.use('/api/addClientData', clientData);
+app.use('/api/clientData', clientData);
 
 // Route middleware
 app.use('/api/user', authRoute);
