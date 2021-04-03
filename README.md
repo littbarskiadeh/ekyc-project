@@ -6,12 +6,12 @@ The system uses only the SIN as the identity for each user since SIN is unique. 
 
 
 ## Process Flow
-•	Users wishing to open a new account must enter their personal details such as Name, Date of Birth, Address and SIN in a website.
-•	The data submitted by the user is temporarily saved in a cloud DB (MongoDB). 
-•	Admin users from Financial Institution then logs in and checks if the user is registered in the Ledger using their unique SIN. 
-•	If the user is found in Ledger, it means that they have already registered before, so the data submitted is verified with data available in ledger.
-•	If all the details match – application is approved.
-•	If there is a mismatch in Name or DOB, it means that either the user has entered the details wrong or someone is trying to steal the identity. Application is rejected.
+•	Users wishing to open a new account must enter their personal details such as Name, Date of Birth, Address and SIN in a website.<br/>
+•	The data submitted by the user is temporarily saved in a cloud DB (MongoDB). <br/>
+•	Admin users from Financial Institution then logs in and checks if the user is registered in the Ledger using their unique SIN. <br/>
+•	If the user is found in Ledger, it means that they have already registered before, so the data submitted is verified with data available in ledger.<br/>
+•	If all the details match – application is approved.<br/>
+•	If there is a mismatch in Name or DOB, it means that either the user has entered the details wrong or someone is trying to steal the identity. Application is rejected.<br/>
 •	If there is mismatch in address – address is updated and application is approved.
 
 
