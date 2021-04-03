@@ -45,9 +45,9 @@ Org 2 – Bank 2
 ![image](https://user-images.githubusercontent.com/45354395/113464817-89a17180-93fd-11eb-88ea-1ef9146b94c1.png)
 
 ## Roles
-User – Any user can create account which will be saved to MongoDB
-Org 1 Admin – Users from Org 1 who can verify data and approve or reject an application
-Org 2 Admin – Users from Org 2 who can verify data and approve or reject an application
+User – Any user can create account which will be saved to MongoDB <br/>
+Org 1 Admin – Users from Org 1 who can verify data and approve or reject an application<br/>
+Org 2 Admin – Users from Org 2 who can verify data and approve or reject an application<br/>
 
 ## State Machine Diagram
 ![image](https://user-images.githubusercontent.com/45354395/113464831-a9d13080-93fd-11eb-83eb-7fa2ba6eba12.png)
