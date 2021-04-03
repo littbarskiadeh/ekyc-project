@@ -1,4 +1,4 @@
-# eKYC Application for Financial Industry
+# eKYC Application for Financial Industry - submitted for DApp-I course
 
 ## Project Description
 eKYC is an HyperLedger based application which is used by financial institutions to share the KYC details of all the customers. This eKYC is an application which allows any user to apply to open a new account with a financial institution registered with it. The data is stored in a shared Ledger which runs in all the financial institutions running the platform. The shared platform is built with HyperLedger Fabric.
