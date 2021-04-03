@@ -1,9 +1,14 @@
-# eKYC
+# eKYC Application for Financial Industry
 
 ## Project Description
 eKYC is an HyperLedger based application which is used by financial institutions to share the KYC details of all the customers. This eKYC is an application which allows any user to apply to open a new account with a financial institution registered with it. The data is stored in a shared Ledger which runs in all the financial institutions running the platform. The shared platform is built with HyperLedger Fabric.
 The system uses only the SIN as the identity for each user since SIN is unique. The system makes sure that the name and date of birth matches with the records – if there is any mismatch in these, the application is rejected for security reasons. If there is a mismatch with the address, the address is updated in the ledger.
 
+## Team Members
+* Elanie Quiambao 
+* Littbarski Adeh
+* Nidusha Hewawilladdara
+* Pradeep Kumar Prakasam
 
 ## Process Flow
 •	Users wishing to open a new account must enter their personal details such as Name, Date of Birth, Address and SIN in a website.<br/>
@@ -57,11 +62,6 @@ Org 2 Admin – Users from Org 2 who can verify data and approve or reject an ap
 
 ### Frontend code - see eKyc-front-end folder
 
-## Group Members
-* Elanie Quiambao 
-* Littbarski Adeh
-* Nidusha Hewawilladdara
-* Pradeep Kumar Prakasam
 
 
 
